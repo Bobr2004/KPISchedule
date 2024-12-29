@@ -10,4 +10,16 @@ const getCurrentUser = async () => {
    }
 };
 
-export { getCurrentUser };
+const logout = async () => {
+   try {
+      const res = await API.get("/logout");
+      return res;
+   } catch (err) {
+      console.log(err);
+      return null;
+   }
+};
+
+const joinClass = async () => {};
+
+export { getCurrentUser, logout };

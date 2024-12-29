@@ -6,6 +6,7 @@ import {
    useState
 } from "react";
 import { getCurrentUser } from "../requests/GET";
+import { parseRole } from "../helpers/functions";
 
 type Roles = "user" | "guest" | "admin";
 
@@ -39,9 +40,9 @@ function RoleContextProvider({ children }: PropsWithChildren) {
    };
 
    const setRoleFromRequest = async () => {
-      const { role } = await getCurrentUser();
-      setRole(transferRole(role));
-      return transferRole(role);
+      const data = await getCurrentUser();
+      setRole(transferRole(parseRole(data)));
+      return transferRole(parseRole(data));
    };
 
    useEffect(() => {

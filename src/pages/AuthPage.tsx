@@ -122,8 +122,17 @@ function LogForm() {
       resolver: zodResolver(logScheme)
    });
 
+   const { setRoleFromRequest } = useRole();
+   const navigateTo = useNavigate();
+
    const onSubmit = async (data: RegBodyType) => {
-      const res = await loginUser(data);
+      await loginUser(data);
+      const role = await setRoleFromRequest();
+      if (role === "admin") {
+         navigateTo("/admin");
+      } else if (role === "user") {
+         navigateTo("/user");
+      }
    };
    return (
       <Box className="mx-auto w-[350px] mt-4">
