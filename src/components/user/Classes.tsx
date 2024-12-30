@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { ClassCard, ClassCardProps } from "../ui/ClassCard";
 
-function Classes() {
+function Classes({ isAdmin }: { isAdmin?: boolean }) {
    const ClassList = useRef<ClassCardProps[]>([
       { title: "NI - 22" },
       { title: "JJ - 11" },
@@ -14,7 +14,7 @@ function Classes() {
    return (
       <ul className="flex flex-wrap gap-2 justify-center">
          {ClassList.current.map(({ title }, i) => (
-            <ClassCard {...{ title }} key={i} />
+            <ClassCard {...{ title }} isAdmin={isAdmin} key={i} />
          ))}
       </ul>
    );
